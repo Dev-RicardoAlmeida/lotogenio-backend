@@ -15,6 +15,11 @@ public class Servlet extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //Liberar CORS para permitir requisições de outros domínios
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
 		String tipo = request.getParameter("tipo");
         java.util.List<Integer> numeros;
 
@@ -37,4 +42,12 @@ public class Servlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+
+    @Override
+    protected void doOptions(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    }
+
 }
